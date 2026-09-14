@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
 import { debounceTime } from 'rxjs'
@@ -14,7 +14,7 @@ import { WeatherService } from '../weather/weather.service'
   styleUrls: ['./city-search.component.css'],
 })
 export class CitySearchComponent implements OnInit {
-  search = new FormControl('')
+  search = new FormControl('', [Validators.minLength(2)])
 
   constructor(private weatherService: WeatherService) {}
 

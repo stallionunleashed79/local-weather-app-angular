@@ -1,12 +1,16 @@
 <form>
   <mat-form-field>
     <mat-label>City Name or Postal Code</mat-label>
-    <mat-icon matPrefix>search</mat-icon>
     <input
       matInput
       aria-label="City or Zip"
       placeholder="Enter city name"
       [formControl]="search" />
     <mat-hint>Enter city name or postal code</mat-hint>
+    @if (
+      search.invalid && (search.dirty || search.touched) && search.errors?.['minlength']
+    ) {
+      <mat-error> City name must be at least 2 characters long </mat-error>
+    }
   </mat-form-field>
 </form>
