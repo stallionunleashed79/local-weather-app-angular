@@ -49,8 +49,11 @@ export class WeatherService implements IWeatherService {
       params = params.set('zip', search)
     }
 
-    params = params.set('appid', environment.appId)
+    return this.getCurrentWeatherHelper(params)
+  }
 
+  private getCurrentWeatherHelper(params: HttpParams): Observable<ICurrentWeather> {
+    params = params.set('appid', environment.appId)
     return this.httpClient
       .get<ICurrentWeatherData>(
         `${environment.baseUrl}api.openweathermap.org/data/2.5/weather`,
