@@ -44,7 +44,7 @@ export class WeatherService implements IWeatherService {
 
   getCurrentWeather(
     search: string | number,
-    country: string
+    country?: string
   ): Observable<ICurrentWeather> {
     let params = new HttpParams()
     if (typeof search === 'string') {
