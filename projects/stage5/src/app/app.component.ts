@@ -16,7 +16,7 @@ import { WeatherService } from './weather/weather.service'
         <span data-testid="title">LocalCast Weather</span>
       </mat-toolbar>
       <div fxLayoutAlign="center">
-        <app-city-search (searchEvent)="doSearch($event)"></app-city-search>
+        <app-city-search></app-city-search>
       </div>
       <div fxLayout="row">
         <div fxFlex></div>
@@ -27,7 +27,7 @@ import { WeatherService } from './weather/weather.service'
             </mat-card-title>
           </mat-card-header>
           <mat-card-content>
-            <app-current-weather [current]="currentWeather"></app-current-weather>
+            <app-current-weather></app-current-weather>
           </mat-card-content>
         </mat-card>
         <div fxFlex></div>
@@ -43,16 +43,4 @@ import { WeatherService } from './weather/weather.service'
     MatCardModule,
   ],
 })
-export class AppComponent {
-  currentWeather!: ICurrentWeather
-  constructor(private weatherService: WeatherService) {}
-
-  doSearch(search: string) {
-    const userInput = search.split(',').map((token) => token.trim())
-    const city = userInput[0]
-    const country = userInput.length > 1 ? userInput[1] : undefined
-    this.weatherService.getCurrentWeather(city, country).subscribe((weather) => {
-      this.currentWeather = weather
-    })
-  }
-}
+export class AppComponent {}

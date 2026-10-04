@@ -23,8 +23,12 @@ export class CitySearchComponent implements OnInit {
     this.search.valueChanges
       .pipe(debounceTime(1000))
       .subscribe((search: string | null) => {
-        if (!this.search.invalid) {
-          this.searchEvent.emit(search || '')
+        if (search) {
+          const tokens = search.split(',').map((token) => token.trim())
+          this.weatherService.updateCurrentWeather(
+            tokens[0],
+            tokens.length > 1 ? tokens[1] : undefined
+          )
         }
       })
   }

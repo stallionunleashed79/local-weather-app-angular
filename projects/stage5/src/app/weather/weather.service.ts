@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Observable } from 'rxjs'
+import { BehaviorSubject, Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 
 import { environment } from '../../environments/environment'
@@ -34,6 +34,8 @@ export interface IWeatherService {
     country?: string
   ): Observable<ICurrentWeather>
   getCurrentWeatherByCoords(coords: Coordinates): Observable<ICurrentWeather>
+  readonly currentWeather$: BehaviorSubject<ICurrentWeather | null>
+  updateCurrentWeather(search: string | number, country?: string): void
 }
 
 @Injectable({
@@ -41,6 +43,20 @@ export interface IWeatherService {
 })
 export class WeatherService implements IWeatherService {
   constructor(private httpClient: HttpClient) {}
+  readonly currentWeather$ = new BehaviorSubject<ICurrentWeather | null>({
+    city: '',
+    country: '',
+    date: Date.now(),
+    image: '',
+    temperature: 0,
+    description: '',
+  })
+
+  updateCurrentWeather(search: string | number, country?: string): void {
+    this.getCurrentWeather(search, country).subscribe((weather) => {
+      this.currentWeather$.next(weather)
+    })
+  }
 
   getCurrentWeather(
     search: string | number,
