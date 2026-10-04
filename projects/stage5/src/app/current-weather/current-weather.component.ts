@@ -3,7 +3,6 @@ import { Component, Input } from '@angular/core'
 import { FlexModule } from '@ngbracket/ngx-layout/flex'
 
 import { ICurrentWeather } from '../interfaces'
-import { WeatherService } from '../weather/weather.service'
 
 @Component({
   selector: 'app-current-weather',
@@ -13,7 +12,6 @@ import { WeatherService } from '../weather/weather.service'
   imports: [FlexModule, DecimalPipe, DatePipe],
 })
 export class CurrentWeatherComponent {
-  constructor(private weatherService: WeatherService) {}
   @Input() current!: ICurrentWeather
 
   getOrdinal(date: number) {
