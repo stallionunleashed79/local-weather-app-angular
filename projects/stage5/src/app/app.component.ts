@@ -5,8 +5,6 @@ import { FlexModule } from '@ngbracket/ngx-layout/flex'
 
 import { CitySearchComponent } from './city-search/city-search.component'
 import { CurrentWeatherComponent } from './current-weather/current-weather.component'
-import { ICurrentWeather } from './interfaces'
-import { WeatherService } from './weather/weather.service'
 
 @Component({
   selector: 'app-root',

@@ -1,5 +1,5 @@
 import { DatePipe, DecimalPipe } from '@angular/common'
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { FlexModule } from '@ngbracket/ngx-layout/flex'
 
 import { ICurrentWeather } from '../interfaces'
