@@ -117,6 +117,7 @@
     "prettier": "^3.1.1",
     "rimraf": "^5.0.5",
     "typescript": "^5.4.5",
-    "vercel": "^33.0.1"
+    "vercel": "^33.0.1",
+    "webpack-dev-server": "^4.15.1"
   }
 }
