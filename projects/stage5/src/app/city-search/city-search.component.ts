@@ -32,13 +32,15 @@ export class CitySearchComponent implements OnInit {
   constructor(private weatherService: WeatherService) {}
 
   ngOnInit(): void {
-    this.search.valueChanges.pipe(
-      takeUntilDestroyed(this.destroyRef),
-      filter(() => this.search.valid),
-      debounceTime(1000),
-      tap((searchValue: string) => this.doSearch(searchValue)),
-      takeUntilDestroyed(this.destroyRef)
-    )
+    this.search.valueChanges
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        filter(() => this.search.valid),
+        debounceTime(1000),
+        tap((searchValue: string) => this.doSearch(searchValue)),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe()
   }
 
   doSearch(searchValue: string) {
