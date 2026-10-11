@@ -1,11 +1,4 @@
-import {
-  Component,
-  DestroyRef,
-  EventEmitter,
-  inject,
-  OnInit,
-  Output,
-} from '@angular/core'
+import { Component, DestroyRef, inject, OnInit } from '@angular/core'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms'
 import { MatFormFieldModule } from '@angular/material/form-field'
@@ -26,7 +19,6 @@ export class CitySearchComponent implements OnInit {
     nonNullable: true,
     validators: [Validators.required, Validators.minLength(2)],
   })
-  @Output() searchEvent = new EventEmitter<string>()
   private destroyRef = inject(DestroyRef)
 
   constructor(private weatherService: WeatherService) {}
